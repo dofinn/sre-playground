@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: o11y-promgraph
+spec:
+  containers:
+  - name: grafana
+    image: grafana/grafana-oss:latest
+    ports:
+    - containerPort: 3000
+      hostPort: 3000
+    volumeMounts:
+    - name: config-grafana
+      mountPath: /etc/grafana/provisioning/datasources
+  - name: prometheus
+    image: prom/prometheus:latest
+    ports:
+    - containerPort: 9090
+      hostPort: 9090
+    volumeMounts:
+    - name: config-prometheus
+      mountPath: /etc/prometheus
+  volumes:
+  - name: config-grafana
+    configMap:
+      name: grafana
+  - name: config-prometheus
+    configMap:
+      name: prometheus
+
