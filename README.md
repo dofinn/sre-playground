@@ -1,4 +1,6 @@
-# o11ypods
+# SRE Playground
+
+Playground to play and develop SLO and Telemetry foundations. 
 
 Contains two pod configurations that are setup via podman.
 
